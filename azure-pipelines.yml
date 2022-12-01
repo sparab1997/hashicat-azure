@@ -17,3 +17,13 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+  displayName: 'Install Python 3.8'
+- script: pip install checkov
+  displayName: 'Install Checkov'
+- script: checkov -d <directory> --bc-api-key 055f59b2-833c-4ca9-a4a2-5f1b07d0a90b::<C0apEk/7J84/ewJjYP2cR1l7I9Q=> --repo-id <sparab1997/hashicat-azure> --branch main
+  displayName: 'Scan with Prisma Cloud'
+  env:
+    PRISMA_API_URL: <app.ind.prismacloud.io>
